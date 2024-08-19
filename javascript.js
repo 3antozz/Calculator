@@ -6,8 +6,8 @@ const displayContainer = document.querySelector(".display");
 handleDisplayAndButtons();
 
 function add (a, b) {
-    console.log(a+b);
-    return a+b;
+    console.log(a+ " " +b);
+    return (+a)+(+b);
 }
 
 function substract (a, b) {
@@ -24,8 +24,8 @@ function divide (a ,b) {
 
 let firstNumber = 0;
 let operator;
-let secondNumber;
-let displayValue;
+let secondNumber = 0;
+let displayValue = 0;
 let resetDisplay = false;
 
 function operate (firstNumber, operator, secondNumber) {
@@ -110,6 +110,7 @@ function handleDisplayAndButtons () {
                 displayValue = +displayContainer.textContent;
                 firstNumber = 0;
                 secondNumber = 0;
+                operator = "";
                 break;
 
             case "button-decimal":
@@ -118,33 +119,48 @@ function handleDisplayAndButtons () {
                 break;
 
             case "button-add":
+                if (operator) {
+                    secondNumber = +displayValue;
+                    firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                }
+                if (!operator && displayContainer.textContent == 0) {
+                    displayContainer.textContent = "0";
+                }
+                firstNumber = +displayContainer.textContent;
                 operator = "+";
                 secondNumber = +displayValue;
-                firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                 resetDisplay = true;
                 break;
 
             case "button-substract":
+                if (operator) {
+                    secondNumber = +displayValue;
+                    firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                }
+                // firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                 operator = "-";
-                firstNumber = +displayValue;
-                displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                secondNumber = +displayValue;
+                // firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                 resetDisplay = true;
                 break;
 
             case "button-equal":
-                secondNumber = +displayValue;
-                displayContainer.textContent = operate(firstNumber, operator, secondNumber);
-                firstNumber = +displayContainer.textContent;
-                resetDisplay = true;
-                break;
+                if (!operator && displayContainer.textContent == 0) {
+                    return displayContainer.textContent = "0";
+                }
+                if (operator) {
+                    secondNumber = +displayValue;
+                    displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                    firstNumber = +displayContainer.textContent;
+                    resetDisplay = true;
+                    break;
+                }
+
 
         }
         if (displayContainer.textContent.length > 16) {
             displayContainer.textContent = displayContainer.textContent.substring(0, 16);
         }
-        displayValue = +displayContainer.textContent;
-        console.log("first number: " + firstNumber);
-        console.log("second number: " + secondNumber);
     })
 
 }
