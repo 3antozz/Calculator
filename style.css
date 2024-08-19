@@ -21,6 +21,10 @@ button {
     border-radius: 10%;
 }
 
+button:active {
+    background-color: rgb(171, 166, 166);
+}
+
 .display {
     border-style: solid;
     border-width: 1px;
