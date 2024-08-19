@@ -137,12 +137,15 @@ function handleDisplayAndButtons () {
                     secondNumber = +displayValue;
                     firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                 }
-                // firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                if (!operator && displayContainer.textContent == 0) {
+                    displayContainer.textContent = "0";
+                }
+                firstNumber = +displayContainer.textContent;
                 operator = "-";
                 secondNumber = +displayValue;
-                // firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                 resetDisplay = true;
                 break;
+
 
             case "button-equal":
                 if (!operator && displayContainer.textContent == 0) {
