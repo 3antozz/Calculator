@@ -50,7 +50,7 @@ function operate (firstNumber, operator, secondNumber) {
 function handleDisplayAndButtons () {
     displayContainer.textContent = 0;
     buttonsContainer.addEventListener("click", (event) => {
-        if (displayContainer.textContent === "Haha stop it!" || displayContainer.textContent == NaN){
+        if (displayContainer.textContent === "Haha stop it!" || displayContainer.textContent == NaN || displayContainer.textContent === "ERROR" ){
             displayContainer.textContent = "0";
             displayValue = 0;
         }
@@ -238,6 +238,10 @@ function handleDisplayAndButtons () {
         }
         if (displayContainer.textContent == "") {
             displayContainer.textContent = "0";
+            displayValue = 0;
+        }
+        if (displayContainer.textContent === "NaN") {
+            displayContainer.textContent = "ERROR";
             displayValue = 0;
         }
     })
