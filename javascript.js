@@ -114,6 +114,7 @@ function handleDisplayAndButtons () {
                 break;
 
             case "button-decimal":
+                if (!displayContainer.textContent.includes("."))
                 displayContainer.textContent += ".";
                 displayValue = +displayContainer.textContent;
                 break;
@@ -158,7 +159,25 @@ function handleDisplayAndButtons () {
                 operator = "*";
                 secondNumber = +displayValue;
                 resetDisplay = true;
+                break; 
+                
+                
+
+            case "button-division":
+                if (operator) {
+                    secondNumber = +displayValue;
+                    firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                }
+                if (!operator && displayContainer.textContent == 0) {
+                    displayContainer.textContent = "0";
+                }
+                firstNumber = +displayContainer.textContent;
+                operator = "/";
+                secondNumber = +displayValue;
+                resetDisplay = true;
                 break;    
+    
+            
 
             case "button-equal":
                 if (!operator && displayContainer.textContent == 0) {
