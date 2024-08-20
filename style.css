@@ -1,14 +1,15 @@
 body {
+    padding: 0;
+    border: 0;
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    width: 100vw;
-    height: 100vh;
-    align-content: center;
+    align-items: center;
+    justify-content: center;
+    width: 95vw;
+    height: 95vh;
 }
 
 .calculator-container {
-    margin: auto;
     width: fit-content;
     border-style: solid;
     border-width: 1px;
@@ -17,9 +18,10 @@ body {
 button {
     padding: 20px;
     font-size: 35px;
-    width: 87px;
+    width: 96px;
     border-radius: 10%;
     text-align: center;
+    margin: 2px;
 }
 
 button:active {
@@ -30,10 +32,11 @@ button:active {
     border-style: solid;
     border-width: 1px;
     padding: 10px;
-    font-size: 40px;
+    font-size: 55px;
     text-align: right;
-    height: 50px;
+    height: 70px;
     align-content: center;
+    font-weight: 500;
 }
 
 .row {
@@ -41,7 +44,7 @@ button:active {
 }
 
 #button-zero {
-    flex: 2
+    flex: 2;
 }
 
 .buttons-container {

@@ -7,6 +7,7 @@ handleDisplayAndButtons();
 
 function add (a, b) {
     return (+a)+(+b);
+
 }
 
 function substract (a, b) {
@@ -49,14 +50,14 @@ function operate (firstNumber, operator, secondNumber) {
 function handleDisplayAndButtons () {
     displayContainer.textContent = 0;
     buttonsContainer.addEventListener("click", (event) => {
-        if (displayContainer.textContent === "Haha stop it!"){
+        if (displayContainer.textContent === "Haha stop it!" || displayContainer.textContent == NaN){
             displayContainer.textContent = "0";
             displayValue = 0;
         }
         if (displayContainer.textContent === "0" && event.target.id !== "button-decimal" ) {
             displayContainer.textContent = "";
         }
-        if (resetDisplay && event.target.id !== "button-equal" && operator) {
+        if (resetDisplay && event.target.id !== "button-equal" && event.target.id !== "button-sign" && event.target.id !== "button-backspace" && operator) {
             displayContainer.textContent = "";
             resetDisplay = false;
         }
@@ -223,11 +224,17 @@ function handleDisplayAndButtons () {
 
 
         }
-        if (displayContainer.textContent.length > 16 && !displayContainer.textContent.includes("-")) {
-            displayContainer.textContent = displayContainer.textContent.substring(0, 16);
+
+        if (displayContainer.textContent.includes("e")) {
+            displayValue = +displayContainer.textContent;
+            displayContainer.textContent = displayValue.toExponential(6);
         }
-        if (displayContainer.textContent.length > 16 && displayContainer.textContent.includes("-")) {
-            displayContainer.textContent = displayContainer.textContent.substring(0, 17);
+
+        if (displayContainer.textContent.length > 13 && !displayContainer.textContent.includes("-")) {
+            displayContainer.textContent = displayContainer.textContent.substring(0, 13);
+        }
+        if (displayContainer.textContent.length > 13 && displayContainer.textContent.includes("-")) {
+            displayContainer.textContent = displayContainer.textContent.substring(0, 14);
         }
         if (displayContainer.textContent == "") {
             displayContainer.textContent = "0";
