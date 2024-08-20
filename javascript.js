@@ -6,20 +6,19 @@ const displayContainer = document.querySelector(".display");
 handleDisplayAndButtons();
 
 function add (a, b) {
-    console.log(a+ " " +b);
     return (+a)+(+b);
 }
 
 function substract (a, b) {
-    return a-b;
+    return (+a)-(+b);
 }
 
 function multiply (a, b) {
-    return a*b;
+    return (+a)*(+b);
 }
 
 function divide (a ,b) {
-    return a/b;
+    return (+a)/(+b);
 }
 
 let firstNumber = 0;
@@ -114,9 +113,15 @@ function handleDisplayAndButtons () {
                 break;
 
             case "button-decimal":
-                if (!displayContainer.textContent.includes("."))
-                displayContainer.textContent += ".";
-                displayValue = +displayContainer.textContent;
+                if (displayContainer.textContent.length == 0) {
+                    displayContainer.textContent += "0.";
+                    displayValue = +displayContainer.textContent;
+                }
+                
+                if (!displayContainer.textContent.includes(".")) {
+                    displayContainer.textContent += ".";
+                    displayValue = +displayContainer.textContent;
+                }
                 break;
 
             case "button-add":
@@ -196,6 +201,10 @@ function handleDisplayAndButtons () {
         }
         if (displayContainer.textContent.length > 16) {
             displayContainer.textContent = displayContainer.textContent.substring(0, 16);
+        }
+        if (displayContainer.textContent == "") {
+            displayContainer.textContent = "0";
+            displayValue = 0;
         }
     })
 
