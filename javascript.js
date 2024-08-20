@@ -137,6 +137,11 @@ function handleDisplayAndButtons () {
                     displayValue = +displayContainer.textContent;
                     break;
 
+                case "button-sign":
+                    displayContainer.textContent = +displayContainer.textContent * -1;
+                    displayValue = +displayContainer.textContent;
+                    break;
+
             case "button-add":
                 if (operator) {
                     secondNumber = +displayValue;
