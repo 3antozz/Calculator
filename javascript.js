@@ -20,7 +20,7 @@ function multiply (a, b) {
 
 function divide (a ,b) {
     if (+b == 0 ) {
-        return "Haha stop it!";
+        return "Rak kbir 🤦🏻";
     }
     return (+a)/(+b);
 }
@@ -50,7 +50,7 @@ function operate (firstNumber, operator, secondNumber) {
 function handleDisplayAndButtons () {
     displayContainer.textContent = 0;
     buttonsContainer.addEventListener("click", (event) => {
-        if (displayContainer.textContent === "Haha stop it!" || displayContainer.textContent == NaN || displayContainer.textContent === "ERROR" ){
+        if (displayContainer.textContent.includes("Rak kbir") || displayContainer.textContent == NaN || displayContainer.textContent === "ERROR" ){
             displayContainer.textContent = "0";
             displayValue = 0;
         }
@@ -227,14 +227,14 @@ function handleDisplayAndButtons () {
 
         if (displayContainer.textContent.includes("e")) {
             displayValue = +displayContainer.textContent;
-            displayContainer.textContent = displayValue.toExponential(6);
+            displayContainer.textContent = displayValue.toExponential(4);
         }
 
-        if (displayContainer.textContent.length > 13 && !displayContainer.textContent.includes("-")) {
-            displayContainer.textContent = displayContainer.textContent.substring(0, 13);
+        if (displayContainer.textContent.length > 11 && !displayContainer.textContent.includes("-")) {
+            displayContainer.textContent = displayContainer.textContent.substring(0, 11);
         }
-        if (displayContainer.textContent.length > 13 && displayContainer.textContent.includes("-")) {
-            displayContainer.textContent = displayContainer.textContent.substring(0, 14);
+        if (displayContainer.textContent.length > 11 && displayContainer.textContent.includes("-")) {
+            displayContainer.textContent = displayContainer.textContent.substring(0, 12);
         }
         if (displayContainer.textContent == "") {
             displayContainer.textContent = "0";

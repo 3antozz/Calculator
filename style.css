@@ -1,42 +1,49 @@
+* {
+    font-family:'Roboto Mono', Courier, monospace;
+}
 body {
     padding: 0;
-    border: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 95vw;
-    height: 95vh;
+    text-shadow: 2px;
+    height: 100vh;
 }
 
 .calculator-container {
-    width: fit-content;
     border-style: solid;
     border-width: 1px;
+    border-radius: 2%;
+    background-color: #10395f;
+    padding: 10px;
+    box-shadow: 2px 2px 2px 1px black;
 }
 
 button {
     padding: 20px;
     font-size: 35px;
-    width: 96px;
-    border-radius: 10%;
+    width: 103px;
+    border-radius: 40%;
     text-align: center;
     margin: 2px;
+    box-shadow: 2px 2px 1px 1px black;
 }
 
-button:active {
-    background-color: rgb(171, 166, 166);
-}
 
 .display {
     border-style: solid;
-    border-width: 1px;
+    border-width: 5px;
     padding: 10px;
     font-size: 55px;
     text-align: right;
     height: 70px;
     align-content: center;
     font-weight: 500;
+    text-shadow: 1.3px 1.3px #383838;
+    background-color: rgb(187, 187, 187);
+    box-shadow : 2px 2px 1px 1px black;
 }
 
 .row {
@@ -45,11 +52,94 @@ button:active {
 
 #button-zero {
     flex: 2;
+    border-radius: 30%;
 }
+
 
 .buttons-container {
     margin-top: 10px;
+    user-select: none;
 }
 
 
+#button-zero, 
+#button-one, 
+#button-two, 
+#button-three,
+#button-four,
+#button-five,
+#button-six,
+#button-seven,
+#button-eight,
+#button-nine {
+    background-color: #ffa442;
+}
+
+#button-decimal {
+    background-color: #F4D58D;
+}
+
+#button-decimal:active {
+    background-color: #fae8bd;
+}
+
+#button-equal {
+    background-color: #6c47ff;
+    color: white;
+}
+
+#button-equal:active {
+    background-color: #a28cfa;
+}
+
+
+#button-zero:active,
+#button-one:active, 
+#button-two:active, 
+#button-three:active,
+#button-four:active,
+#button-five:active,
+#button-six:active,
+#button-seven:active,
+#button-eight:active,
+#button-nine:active {
+    background-color: #f7c793;
+}
+
+#button-add,
+#button-substract,
+#button-multiply,
+#button-division {
+    background-color: #00E8FC;
+}
+
+#button-add:active,
+#button-substract:active,
+#button-multiply:active,
+#button-division:active {
+    background-color: #92eef6;
+}
+
+
+
+
+#button-clear,
+#button-backspace,
+#button-sign {
+    background-color: #EFEFEF;
+}
+
+#button-clear:active,
+#button-backspace:active,
+#button-sign:active {
+    background-color: #ccb7b7;
+}
+
+
+#button-backspace {
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 60px;
+}
 
