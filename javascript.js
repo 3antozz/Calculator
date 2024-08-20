@@ -117,7 +117,7 @@ function handleDisplayAndButtons () {
                     displayContainer.textContent += "0.";
                     displayValue = +displayContainer.textContent;
                 }
-                
+
                 if (!displayContainer.textContent.includes(".")) {
                     displayContainer.textContent += ".";
                     displayValue = +displayContainer.textContent;
@@ -133,6 +133,7 @@ function handleDisplayAndButtons () {
                     displayContainer.textContent = "0";
                 }
                 firstNumber = +displayContainer.textContent;
+                displayValue = +displayContainer.textContent;
                 operator = "+";
                 secondNumber = +displayValue;
                 resetDisplay = true;
@@ -147,6 +148,7 @@ function handleDisplayAndButtons () {
                     displayContainer.textContent = "0";
                 }
                 firstNumber = +displayContainer.textContent;
+                displayValue = +displayContainer.textContent;
                 operator = "-";
                 secondNumber = +displayValue;
                 resetDisplay = true;
@@ -161,6 +163,7 @@ function handleDisplayAndButtons () {
                     displayContainer.textContent = "0";
                 }
                 firstNumber = +displayContainer.textContent;
+                displayValue = +displayContainer.textContent;
                 operator = "*";
                 secondNumber = +displayValue;
                 resetDisplay = true;
@@ -177,6 +180,7 @@ function handleDisplayAndButtons () {
                     displayContainer.textContent = "0";
                 }
                 firstNumber = +displayContainer.textContent;
+                displayValue = +displayContainer.textContent;
                 operator = "/";
                 secondNumber = +displayValue;
                 resetDisplay = true;
@@ -192,6 +196,8 @@ function handleDisplayAndButtons () {
                     secondNumber = +displayValue;
                     displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                     firstNumber = +displayContainer.textContent;
+                    secondNumber = +displayContainer.textContent;
+                    displayValue = +displayContainer.textContent;
                     resetDisplay = true;
                     operator = "";
                     break;
