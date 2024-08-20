@@ -50,7 +50,7 @@ function handleDisplayAndButtons () {
         if (displayContainer.textContent === "0" && event.target.id !== "button-decimal" ) {
             displayContainer.textContent = "";
         }
-        if (resetDisplay) {
+        if (resetDisplay && event.target.id !== "button-equal" && operator) {
             displayContainer.textContent = "";
             resetDisplay = false;
         }
@@ -146,6 +146,19 @@ function handleDisplayAndButtons () {
                 resetDisplay = true;
                 break;
 
+            case "button-multiply":
+                if (operator) {
+                    secondNumber = +displayValue;
+                    firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+                }
+                if (!operator && displayContainer.textContent == 0) {
+                    displayContainer.textContent = "0";
+                }
+                firstNumber = +displayContainer.textContent;
+                operator = "*";
+                secondNumber = +displayValue;
+                resetDisplay = true;
+                break;    
 
             case "button-equal":
                 if (!operator && displayContainer.textContent == 0) {
@@ -156,6 +169,7 @@ function handleDisplayAndButtons () {
                     displayContainer.textContent = operate(firstNumber, operator, secondNumber);
                     firstNumber = +displayContainer.textContent;
                     resetDisplay = true;
+                    operator = "";
                     break;
                 }
 
