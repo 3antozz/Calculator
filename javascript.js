@@ -131,6 +131,12 @@ function handleDisplayAndButtons () {
                 }
                 break;
 
+
+                case "button-backspace":
+                    displayContainer.textContent = displayContainer.textContent.substring(0, displayContainer.textContent.length-1);
+                    displayValue = +displayContainer.textContent;
+                    break;
+
             case "button-add":
                 if (operator) {
                     secondNumber = +displayValue;
