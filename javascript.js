@@ -223,8 +223,11 @@ function handleDisplayAndButtons () {
 
 
         }
-        if (displayContainer.textContent.length > 16) {
+        if (displayContainer.textContent.length > 16 && !displayContainer.textContent.includes("-")) {
             displayContainer.textContent = displayContainer.textContent.substring(0, 16);
+        }
+        if (displayContainer.textContent.length > 16 && displayContainer.textContent.includes("-")) {
+            displayContainer.textContent = displayContainer.textContent.substring(0, 17);
         }
         if (displayContainer.textContent == "") {
             displayContainer.textContent = "0";
