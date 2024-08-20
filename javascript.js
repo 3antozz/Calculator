@@ -18,6 +18,9 @@ function multiply (a, b) {
 }
 
 function divide (a ,b) {
+    if (+b == 0 ) {
+        return "Haha stop it!";
+    }
     return (+a)/(+b);
 }
 
@@ -46,6 +49,10 @@ function operate (firstNumber, operator, secondNumber) {
 function handleDisplayAndButtons () {
     displayContainer.textContent = 0;
     buttonsContainer.addEventListener("click", (event) => {
+        if (displayContainer.textContent === "Haha stop it!"){
+            displayContainer.textContent = "0";
+            displayValue = 0;
+        }
         if (displayContainer.textContent === "0" && event.target.id !== "button-decimal" ) {
             displayContainer.textContent = "";
         }
