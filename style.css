@@ -32,18 +32,28 @@ button {
 }
 
 
-.display {
+.display-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-style: solid;
     border-width: 5px;
     padding: 10px;
-    font-size: 55px;
     text-align: right;
-    height: 70px;
+    height: 110px;
     align-content: center;
-    font-weight: 500;
     text-shadow: 1.3px 1.3px #383838;
     background-color: rgb(187, 187, 187);
     box-shadow : 2px 2px 1px 1px black;
+}
+
+.display {
+    font-weight: 500;
+    font-size: 55px;
+}
+
+.history {
+    font-size: 25px;
 }
 
 .row {

@@ -1,12 +1,15 @@
 const buttonsContainer = document.querySelector(".buttons-container");
 const displayContainer = document.querySelector(".display");
+const historyDisplay = document.querySelector(".history");
 
 displayContainer.textContent = 0;
-let firstNumber = 0;
+historyDisplay.textContent = "";
+let firstNumber = "initial";
 let operator;
 let secondNumber = 0;
 let displayValue = 0;
 let resetDisplay = false;
+let showEqual = false;
 const keyMap = {
     '0': 'button-zero',
     '1': 'button-one',
@@ -31,6 +34,7 @@ const keyMap = {
 };
 
 buttonsContainer.addEventListener("click", (event) => {
+    console.log(firstNumber + " and " + secondNumber);
     const buttonID = event.target.id;
     handleDisplayAndButtons(buttonID);
 })
@@ -40,9 +44,6 @@ document.addEventListener("keydown", (event) => {
         handleDisplayAndButtons(buttonID);
     }
 })
-
-// handleDisplayAndButtons();
-// handleKeyPresses();
 
 function add (a, b) {
     return (+a)+(+b);
@@ -79,19 +80,67 @@ function operate (firstNumber, operator, secondNumber) {
             return divide(firstNumber, secondNumber);
     }
 }
+
+function updateHistory (numberOne, previousOper) {
+    if (secondNumber == 0) {
+        secondNumberDisplay = "";
+    }
+    else {secondNumberDisplay = secondNumber};
+    if (showEqual){
+        historyDisplay.textContent = `${+numberOne} ${previousOper} ${secondNumberDisplay} =`;
+    }
+    else {
+        historyDisplay.textContent = `${+numberOne} ${previousOper} ${secondNumberDisplay}`;
+    }
+}
+
+
 function handleOperations(oper) {
-    if (operator) {
-        secondNumber = +displayValue;
-        firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+    if (operator && !displayValue) {
+        operator = oper;
+        showEqual = false;
+        updateHistory (firstNumber, operator);
     }
-    if (!operator && displayContainer.textContent == 0) {
-        displayContainer.textContent = "0";
+    if (!operator && !displayValue) {
+        firstNumber = +displayContainer.textContent;
+        operator = oper;
+        showEqual = false;
+        updateHistory (firstNumber, operator);
+        resetDisplay = true;
+        displayValue = "";
     }
-    firstNumber = +displayContainer.textContent;
-    displayValue = +displayContainer.textContent;
-    operator = oper;
-    secondNumber = +displayValue;
-    resetDisplay = true;
+    if (!operator && displayValue) {
+        if (firstNumber === "initial") {
+            firstNumber = displayContainer.textContent;
+            operator = oper;
+            showEqual = false;
+            updateHistory (firstNumber, operator);
+            resetDisplay = true;
+            displayValue = "";
+        }
+        else {
+            operator = oper;
+            secondNumber = displayContainer.textContent;
+            firstNumber = displayContainer.textContent = operate (firstNumber, operator, secondNumber);
+            secondNumber = 0;
+            showEqual = false;
+            updateHistory(firstNumber, oper);
+            operator = "";
+            resetDisplay = true;
+            displayValue = "";
+        }
+    }
+    
+    if (operator && displayValue) {
+        secondNumber = displayContainer.textContent;
+        firstNumber = displayContainer.textContent = operate (firstNumber, operator, secondNumber);
+        secondNumber = 0;
+        showEqual = false;
+        updateHistory(firstNumber, oper);
+        operator = "";
+        resetDisplay = true;
+        displayValue = "";
+    }
 }
 
 
@@ -102,27 +151,25 @@ function handleDigits(digit) {
 
 function backspace () {
     displayContainer.textContent = displayContainer.textContent.substring(0, displayContainer.textContent.length-1);
-    displayValue = +displayContainer.textContent;
 }
 
 
 function clear() {
     displayContainer.textContent = 0;
-    displayValue = +displayContainer.textContent;
-    firstNumber = 0;
+    displayValue = "";
+    firstNumber = "initial";
     secondNumber = 0;
     operator = "";
+    historyDisplay.textContent = "";
 }
 
 function decimal() {
     if (displayContainer.textContent.length == 0) {
         displayContainer.textContent += "0.";
-        displayValue = +displayContainer.textContent;
     }
 
     if (!displayContainer.textContent.includes(".")) {
         displayContainer.textContent += ".";
-        displayValue = +displayContainer.textContent;
     }
 }
 
@@ -132,10 +179,11 @@ function equal () {
     }
     if (operator) {
         secondNumber = +displayValue;
-        displayContainer.textContent = operate(firstNumber, operator, secondNumber);
-        firstNumber = +displayContainer.textContent;
-        secondNumber = +displayContainer.textContent;
-        displayValue = +displayContainer.textContent;
+        showEqual = true;
+        updateHistory(firstNumber, operator);
+        firstNumber = displayContainer.textContent = operate(firstNumber, operator, secondNumber);
+        secondNumber = 0;
+        displayValue = "";
         resetDisplay = true;
         operator = "";
     }
@@ -143,12 +191,11 @@ function equal () {
 
 function sign(){
     displayContainer.textContent = +displayContainer.textContent * -1;
-    displayValue = +displayContainer.textContent;
 }
 
 
 function handleDisplayAndButtons (buttonID) {
-        let buttonElement = document.querySelector("#" + buttonID);
+        let buttonElement = document.querySelector(`#${buttonID}`);
 
         if (displayContainer.textContent.includes("Rak kbir") || displayContainer.textContent == NaN || displayContainer.textContent === "ERROR" ){
             displayContainer.textContent = "0";
@@ -157,7 +204,7 @@ function handleDisplayAndButtons (buttonID) {
         if (displayContainer.textContent === "0" && buttonID !== "button-decimal" ) {
             displayContainer.textContent = "";
         }
-        if (resetDisplay && buttonID !== "button-equal" && buttonID !== "button-sign" && buttonID !== "button-backspace" && operator) {
+        if (resetDisplay && buttonElement.className === "digit" || resetDisplay && buttonID === "button-decimal") {
             displayContainer.textContent = "";
             resetDisplay = false;
         }
@@ -193,8 +240,8 @@ function handleDisplayAndButtons (buttonID) {
         }
 
         if (displayContainer.textContent.includes("e")) {
-            displayValue = +displayContainer.textContent;
-            displayContainer.textContent = displayValue.toExponential(4);
+            let exponentialNumber = +displayContainer.textContent;
+            displayContainer.textContent = exponentialNumber.toExponential(4);
         }
 
         if (displayContainer.textContent.length > 11 && !displayContainer.textContent.includes("-")) {
@@ -205,11 +252,11 @@ function handleDisplayAndButtons (buttonID) {
         }
         if (displayContainer.textContent == "") {
             displayContainer.textContent = "0";
-            displayValue = 0;
+            displayValue = "";
         }
         if (displayContainer.textContent === "NaN") {
             displayContainer.textContent = "ERROR";
-            displayValue = 0;
+            displayValue = "";
         }
     
 
