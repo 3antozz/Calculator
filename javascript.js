@@ -82,14 +82,15 @@ function operate (firstNumber, operator, secondNumber) {
 }
 
 function updateHistory (numberOne, previousOper) {
-    if (secondNumber == 0) {
-        secondNumberDisplay = "";
-    }
-    else {secondNumberDisplay = secondNumber};
     if (showEqual){
+        secondNumberDisplay = secondNumber
         historyDisplay.textContent = `${+numberOne} ${previousOper} ${secondNumberDisplay} =`;
     }
     else {
+        if (secondNumber == 0) {
+            secondNumberDisplay = "";
+        }
+        else {secondNumberDisplay = secondNumber};
         historyDisplay.textContent = `${+numberOne} ${previousOper} ${secondNumberDisplay}`;
     }
 }
