@@ -152,6 +152,7 @@ function handleDigits(digit) {
 
 function backspace () {
     displayContainer.textContent = displayContainer.textContent.substring(0, displayContainer.textContent.length-1);
+    displayValue = +displayContainer.textContent;
 }
 
 
