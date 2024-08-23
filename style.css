@@ -96,7 +96,7 @@ button {
     background-color: #F4D58D;
 }
 
-#button-decimal:active {
+#button-decimal:hover {
     background-color: #fae8bd;
 }
 
@@ -105,21 +105,22 @@ button {
     color: white;
 }
 
-#button-equal:active {
+#button-equal:hover {
     background-color: #a28cfa;
 }
 
 
-#button-zero:active,
-#button-one:active, 
-#button-two:active, 
-#button-three:active,
-#button-four:active,
-#button-five:active,
-#button-six:active,
-#button-seven:active,
-#button-eight:active,
-#button-nine:active {
+
+#button-zero:hover,
+#button-one:hover, 
+#button-two:hover, 
+#button-three:hover,
+#button-four:hover,
+#button-five:hover,
+#button-six:hover,
+#button-seven:hover,
+#button-eight:hover,
+#button-nine:hover {
     background-color: #f7c793;
 }
 
@@ -130,10 +131,10 @@ button {
     background-color: #00E8FC;
 }
 
-#button-add:active,
-#button-substract:active,
-#button-multiply:active,
-#button-division:active {
+#button-add:hover,
+#button-substract:hover,
+#button-multiply:hover,
+#button-division:hover {
     background-color: #92eef6;
 }
 
@@ -146,9 +147,9 @@ button {
     background-color: #EFEFEF;
 }
 
-#button-clear:active,
-#button-backspace:active,
-#button-sign:active {
+#button-clear:hover,
+#button-backspace:hover,
+#button-sign:hover {
     background-color: #ccb7b7;
 }
 
