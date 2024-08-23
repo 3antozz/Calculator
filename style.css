@@ -19,7 +19,7 @@ body {
     border-width: 1px;
     border-radius: 2%;
     background-color: #10395f;
-    padding: 10px;
+    padding: 15px;
     box-shadow: 2px 2px 2px 1px black;
 }
 
@@ -163,5 +163,6 @@ h2 {
     padding: 0;
     margin: 10px;
 }
+
 
 
