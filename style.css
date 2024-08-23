@@ -28,6 +28,7 @@ body {
 button {
     padding: 20px;
     font-size: 25px;
+    font-weight: 500;
     width: 80px;
     border-radius: 40%;
     text-align: center;
